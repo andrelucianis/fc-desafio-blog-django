@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Django Blog{% endblock %}
+{% block heading %}Django Blog{% endblock %}
+
+{% block content %}
+<h2>Blog Posts</h2>
+{% if blog_posts %}
+    <ul>
+    {% for post in blog_posts %}
+        <li>
+            <div>
+                <p><strong>{{ post.title }} - {{ post.created_at }}</strong></p>
+                <p>Preview: {{ post.content|slice:":30" }}...</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blog posts found.</p>
+{% endif %}
+<h2>Tags</h2>
+{% if tags_list %}
+    <ul>
+    {% for tag in tags_list %}
+        <li>{{ tag.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tags found.</p>
+{% endif %}
+{% endblock %}
